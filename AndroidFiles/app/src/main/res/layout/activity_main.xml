@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Internal storage"
+        android:textSize="35dp" />
+
+    <EditText
+        android:id="@+id/etData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_marginTop="42dp"
+        android:focusable="true"
+        android:hint="Enter Text"
+        android:textColorHighlight="#ff7eff15"
+        android:textColorHint="#ffff25e6" />
+
+    <Button
+        android:id="@+id/btnWriteData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/btnReadData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnWriteData"
+        android:layout_alignEnd="@+id/etData"
+        android:layout_alignRight="@+id/etData"
+        android:text="load" />
+
+    <Button
+        android:id="@+id/btnDeleteFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnWriteData"
+        android:layout_alignEnd="@+id/etData"
+        android:layout_alignRight="@+id/etData"
+        android:text="Delete All Files" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etData"
+        android:layout_toStartOf="@+id/btnReadData"
+        android:layout_toLeftOf="@+id/btnReadData"
+        android:text="Read"
+        android:textColor="#ff5bff1f"
+        android:textSize="25dp" />
+
+
+    <TextView
+        android:id="@+id/tvFilesList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Files list : "
+        android:textSize="25sp" />
+
+</LinearLayout>

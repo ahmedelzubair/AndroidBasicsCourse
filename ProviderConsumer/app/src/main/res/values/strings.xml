@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Content Provider Consumer</string>
+    <string name="heading">Accessing data of Content Provider App</string>
+    <string name="loadButtonText">Load Data</string>
+</resources>
