@@ -1,52 +1,60 @@
 package com.ahmedelzubair.androidsharedpreferences;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
-    EditText ed1,ed2,ed3;
-    Button b1;
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Name = "nameKey";
-    public static final String Phone = "phoneKey";
-    public static final String Email = "emailKey";
+    EditText etPassword, etUsername;
+    Button btnLogin;
+    CheckBox checkboxRememberMe;
 
+    public static final String MyPREFERENCES = "my_prefs";
     SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ed1=(EditText)findViewById(R.id.editText);
-        ed2=(EditText)findViewById(R.id.etPassword);
-        ed3=(EditText)findViewById(R.id.etEmail);
-
-        b1=(Button)findViewById(R.id.btnLogin);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String n  = ed1.getText().toString();
-                String ph  = ed2.getText().toString();
-                String e  = ed3.getText().toString();
+        initViews();
+        setViewsListeners();
+    }
 
-                SharedPreferences.Editor editor = sharedpreferences.edit();
+    private void initViews() {
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        checkboxRememberMe = findViewById(R.id.checkboxRememberMe);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
 
-                editor.putString(Name, n);
-                editor.putString(Phone, ph);
-                editor.putString(Email, e);
-                editor.commit();
-                Toast.makeText(MainActivity.this,"Thanks",Toast.LENGTH_LONG).show();
+        if (sharedpreferences.getBoolean("remember_me", false)) {
+            etUsername.setText(sharedpreferences.getString("username", ""));
+            etPassword.setText(sharedpreferences.getString("password", ""));
+        }
+    }
+
+    private void setViewsListeners() {
+        btnLogin.setOnClickListener(v -> {
+            if (checkboxRememberMe.isChecked()) {
+                String pass = etPassword.getText().toString();
+                String username = etUsername.getText().toString();
+
+                editor.putString("username", username);
+                editor.putString("password", pass);
+                editor.putBoolean("remember_me", true);
+                editor.apply();
+                Toast.makeText(MainActivity.this, "Your data Saved", Toast.LENGTH_LONG).show();
             }
         });
     }
